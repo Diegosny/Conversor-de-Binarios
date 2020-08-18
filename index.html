@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Conversor de Binario</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="form-group">
+			<input type="text" placeholder="Decimal Para Binario" id="binario" class="form-control">
+		</div>
+
+		<div id="valorFinal" ></div>
+
+		<div class="form-group">
+			<button class="btn-info btn" onclick="DecimalToBi()">Binário</button>
+		</div>
+
+<!-- ===================================== -->
+		<div class="form-group">
+			<input type="text" placeholder="Binario Para Decimal" id="decimal" class="form-control">
+		</div>
+
+		<div id="valorFinal2" ></div>
+
+
+		<div class="form-group">
+			<button class="btn-info btn" onclick="BiToDecimal()">Decimal</button>
+		</div>
+
+	</div>
+
+
+	<script src="script/script.js"> </script>
+</body>
+</html>
