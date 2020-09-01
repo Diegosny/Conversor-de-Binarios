@@ -1,56 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Conversor de Binario</title>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/estilo.css">
+<meta charset=UTF-8>
+<meta name=viewport content='width=device-width, initial-scale=1.0'>
+<title>Conversor de Binario</title>
+<style>
+td{border:1px solid #777777; padding:8px;}
+input[type="checkbox"]{transform:scale(2); margin:12px;}
+.titulosecao{font-family:Arial; color:#777777; font-weight:bold;}
+.secao{background-color:#e9ecef; border-radius:5px; margin:20px 36px; padding:18px;}
+.resultados{background-color:#d1ecf1; color:#555555; margin-bottom:12px; padding:6px; border:1px solid #ffffff; border-radius:5px; display:none;}
+@media(max-width:930px){table{display:none;}}
+</style>
 </head>
-<body onload="limparDados()">
-	<div class="container mt-5">
-
-			<div class="text-center"> 
-				<h4 class="text-white"> Conversor de Binários </h4>
-			</div>
-
-		<div class="jumbotron">
-			<div class="text-center"> 
-				<h4 class="text-dark"> Decimal Para Binário </h4>
-			</div>
-
-			<div class="form-group">
-				<input type="text" placeholder="Decimal Para Binario" id="binario" class="w-25 form-control">
-			</div>
-
-			<div id="valorFinal" ></div>
-
-			<div class="form-group">
-				<button class="btn-info btn" onclick="DecimalToBi()">Binário</button>
-			</div>
-	</div>
-<!-- ===================================== -->
-		
-	<div class="jumbotron">
-		<div class="text-center"> 
-			<h4 class="text-dark"> Binário Para Decimal </h4>
-		</div>
-		<div class="form-group">
-			<input type="text" placeholder="Binario Para Decimal" id="decimal" class="w-25 form-control">
-		</div>
-
-		<div id="valorFinal2" ></div>
-
-
-		<div class="form-group">
-			<button class="btn-info btn" onclick="BiToDecimal()">Decimal</button>
-		</div>
-	</div>
-
-
-	</div>
-
-
-	<script src="script/script.js"> </script>
+<body style='background-color:#014144;'>
+<div style='color:#ffffff; text-align:center; font-size:30px; margin-top:22px; font-weight:bold;'>Conversor de Binários</div>
+<div class=secao>
+	<div class=titulosecao>Decimal Para Binário</div>
+	<input placeholder="Decimal Para Binario" id=binario style='margin:12px 0px;'><br>
+	<div id=valorFinal class=resultados></div>
+	<button onclick="DecimalToBi();">Binário</button>
+</div>
+<div class=secao>
+	<div class=titulosecao>Binário Para Decimal</div>
+	<input placeholder="Binario Para Decimal" id=decimal style='margin:12px 0px;'><br>
+	<div id=valorFinal2 class=resultados></div>
+	<button onclick="BiToDecimal();">Decimal</button>
+</div>
+<script>
+function DecimalToBi(){
+	document.getElementById('valorFinal').innerHTML="Binário: "+parseInt(document.getElementById('binario').value).toString(2);
+	document.getElementById('valorFinal').style.display='block';
+}
+function BiToDecimal(){
+	document.getElementById('valorFinal2').innerHTML="Decimal: "+parseInt(document.getElementById('decimal').value,2);
+	document.getElementById('valorFinal2').style.display='block';
+}
+</script>
+<table align=center class=secao><tr>
+<td align=center><input type=checkbox id=cb9 onclick="rfr();"><hr>2<sup>9</sup><hr>512</td>
+<td align=center><input type=checkbox id=cb8 onclick="rfr();"><hr>2<sup>8</sup><hr>256</td>
+<td align=center><input type=checkbox id=cb7 onclick="rfr();"><hr>2<sup>7</sup><hr>128</td>
+<td align=center><input type=checkbox id=cb6 onclick="rfr();"><hr>2<sup>6</sup><hr>64</td>
+<td align=center><input type=checkbox id=cb5 onclick="rfr();"><hr>2<sup>5</sup><hr>32</td>
+<td align=center><input type=checkbox id=cb4 onclick="rfr();"><hr>2<sup>4</sup><hr>16</td>
+<td align=center><input type=checkbox id=cb3 onclick="rfr();"><hr>2<sup>3</sup><hr>8</td>
+<td align=center><input type=checkbox id=cb2 onclick="rfr();"><hr>2<sup>2</sup><hr>4</td>
+<td align=center><input type=checkbox id=cb1 onclick="rfr();"><hr>2<sup>1</sup><hr>2</td>
+<td align=center><input type=checkbox id=cb0 onclick="rfr();"><hr>2<sup>0</sup><hr>1</td>
+<td align=center width=110 id=resultado>0</td>
+<td align=center width=110 style='background-image:url(interruptor.png); background-position:center;'> </td>
+</tr></table><br><br>
+<script>
+function rfr(){
+	representacao='';
+	total=0;
+	soma='';
+	for(x=0;x<10;x++)if(document.getElementById('cb'+x).checked)total+=Math.pow(2,x);
+	for(x=9;x>=0;x--)representacao+=document.getElementById('cb'+x).checked?'1':'0';
+	for(x=0;x<10;x++)if(document.getElementById('cb'+x).checked)soma+=('+'+Math.pow(2,x));
+	document.getElementById('resultado').innerHTML=(soma?soma.substring(1)+"<hr>":'')+total+"<hr>"+representacao;
+}
+rfr();
+</script>
 </body>
 </html>
